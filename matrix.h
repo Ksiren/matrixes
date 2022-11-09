@@ -30,6 +30,7 @@ public:
     // }
     
     const Matrix<num_type> operator+(const Matrix<num_type>&);
+    const Matrix<num_type> operator*(num_type);
 };
 
 template<typename num_type>
@@ -66,8 +67,8 @@ template<typename num_type>
 const Matrix<num_type> Matrix<num_type>::operator+(const Matrix<num_type>& matr1){
     Matrix<num_type> res_matrix(matr0[0].size(), matr0.size());
     if (matr0.size() != matr1.matr0.size() || matr1.matr0[0].size() != matr0[0].size()){
-        cout << "!!!ERROR!!!" << endl << "(wrong sizes)" << endl << "|||" << endl << "||" << endl << "|" << endl;
-        // return *this;
+        cout << "!!!ERROR!!!" << endl << "(wrong sizes)" << endl << "return to the first matrix"<< endl << "|||" << endl << "||" << endl << "|" << endl;
+        return *this;
     } else{
         for (int i = 0; i < matr0.size(); i++){
             for (int j = 0; j < matr0[i].size(); j++){
@@ -75,6 +76,18 @@ const Matrix<num_type> Matrix<num_type>::operator+(const Matrix<num_type>& matr1
             }
         }
         
+    }
+    return res_matrix;
+}
+
+
+template<typename num_type>
+const Matrix<num_type> Matrix<num_type>::operator*(num_type ko) {
+    Matrix<num_type> res_matrix(matr0[0].size(), matr0.size());
+    for (int i = 0; i < matr0.size(); i++){
+        for (int j = 0; j < matr0[i].size(); j++){
+            res_matrix.matr0[i][j] = matr0[i][j] * ko;
+        }
     }
     return res_matrix;
 }
